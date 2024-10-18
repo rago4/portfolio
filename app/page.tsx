@@ -42,11 +42,11 @@ export default function Home() {
         </p>
         <div className="mb-7 mt-5 flex items-center space-x-4">
           <div className="relative h-[2px] w-full rounded-full bg-pink-500">
-            <div className="animate-flicker absolute -inset-0.5 bg-gradient-to-r from-fuchsia-500 to-pink-500 blur" />
+            <div className="absolute -inset-0.5 animate-flicker bg-gradient-to-r from-fuchsia-500 to-pink-500 blur" />
           </div>
           <p className="whitespace-nowrap text-sm text-neutral-100">Reach out</p>
           <div className="relative h-[2px] w-full rounded-full bg-pink-500">
-            <div className="animate-flicker absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-fuchsia-500 blur" />
+            <div className="absolute -inset-0.5 animate-flicker bg-gradient-to-r from-pink-500 to-fuchsia-500 blur" />
           </div>
         </div>
         <div className="flex flex-col flex-wrap justify-center gap-2 md:flex-row">
