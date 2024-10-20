@@ -14,11 +14,29 @@ type Fields = {
   title: string
 }
 
+export type ContactInfo = {
+  id: string
+  type: keyof typeof contactType
+  value: string
+}
+
 type Context = {
   documentStatus: DocumentStatus
-  setDocumentStatus: Dispatch<SetStateAction<DocumentStatus>>
+  resetDocumentStatus: () => void
   fields: Fields
   onFieldChange: (key: keyof Fields, value: string) => void
+  contactInfo: ContactInfo[]
+  setContactInfo: Dispatch<SetStateAction<ContactInfo[]>>
+}
+
+export const contactType = {
+  dribbble: 'Dribbble',
+  email: 'E-mail',
+  github: 'GitHub',
+  linkedin: 'LinkedIn',
+  other: 'Other',
+  phone: 'Phone',
+  twitter: 'Twitter',
 }
 
 const MainContext = createContext<Context | undefined>(undefined)
@@ -37,16 +55,22 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
     name: '',
     title: '',
   })
+  const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
+  const resetDocumentStatus = () => {
+    setDocumentStatus('idle')
+  }
   return (
     <MainContext.Provider
       value={{
         documentStatus,
-        setDocumentStatus,
+        resetDocumentStatus,
         fields,
         onFieldChange: (key: keyof Fields, value: string) => {
           setFields((fields) => ({ ...fields, [key]: value }))
-          setDocumentStatus('idle')
+          resetDocumentStatus()
         },
+        contactInfo,
+        setContactInfo,
       }}
     >
       {children}
