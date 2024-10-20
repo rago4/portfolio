@@ -1,9 +1,9 @@
 import { PlusIcon, XIcon } from 'lucide-react'
 
-import { Button } from '@/cv-builder/components/ui/button'
-import { Input } from '@/cv-builder/components/ui/input'
-import { type ContactInfo, contactType, useMainContext } from '@/cv-builder/main-context'
-import { uuid } from '@/cv-builder/utils'
+import { Button } from '@/resume-builder/components/ui/button'
+import { Input } from '@/resume-builder/components/ui/input'
+import { type ContactInfo, contactType, useMainContext } from '@/resume-builder/main-context'
+import { uuid } from '@/resume-builder/utils'
 
 export function ContactFields() {
   const { setDocumentStatus, contactInfo, setContactInfo } = useMainContext()

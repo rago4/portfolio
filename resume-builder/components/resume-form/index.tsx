@@ -1,13 +1,13 @@
-import { ContactFields } from '@/cv-builder/components/cv-form/contact-fields'
-import { EducationFields } from '@/cv-builder/components/cv-form/education-fields'
-import { ExperienceFields } from '@/cv-builder/components/cv-form/experience-fields'
-import { Heading } from '@/cv-builder/components/ui/heading'
-import { Input } from '@/cv-builder/components/ui/input'
-import { Label } from '@/cv-builder/components/ui/label'
-import { Textarea } from '@/cv-builder/components/ui/textarea'
-import { useMainContext } from '@/cv-builder/main-context'
+import { ContactFields } from '@/resume-builder/components/resume-form/contact-fields'
+import { EducationFields } from '@/resume-builder/components/resume-form/education-fields'
+import { ExperienceFields } from '@/resume-builder/components/resume-form/experience-fields'
+import { Heading } from '@/resume-builder/components/ui/heading'
+import { Input } from '@/resume-builder/components/ui/input'
+import { Label } from '@/resume-builder/components/ui/label'
+import { Textarea } from '@/resume-builder/components/ui/textarea'
+import { useMainContext } from '@/resume-builder/main-context'
 
-export function CVForm() {
+export function ResumeForm() {
   const { fields, onFieldChange } = useMainContext()
   return (
     <form className="space-y-5" onSubmit={(event) => event.preventDefault()}>

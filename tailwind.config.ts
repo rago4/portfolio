@@ -5,7 +5,7 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './cv-builder/**/*.{js,ts,jsx,tsx,mdx}',
+    './resume-builder/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
