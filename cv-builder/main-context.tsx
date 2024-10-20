@@ -12,6 +12,7 @@ type DocumentStatus = 'idle' | 'ready'
 type Fields = {
   name: string
   title: string
+  summary: string
 }
 
 export type ContactInfo = {
@@ -54,6 +55,7 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
   const [fields, setFields] = useState<Fields>({
     name: '',
     title: '',
+    summary: '',
   })
   const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
   return (

@@ -8,6 +8,7 @@ import {
   TwitterIcon,
 } from 'lucide-react'
 
+import { Heading } from '@/cv-builder/components/ui/heading'
 import { useMainContext } from '@/cv-builder/main-context'
 
 const contactIconMap = {
@@ -47,6 +48,12 @@ export function CVPreview() {
             )
           })}
         </ul>
+      )}
+      {fields.summary.length > 0 && (
+        <div>
+          <Heading>Summary</Heading>
+          <p className="text-slate-600">{fields.summary}</p>
+        </div>
       )}
     </div>
   )
