@@ -38,9 +38,22 @@ export function ContactFields() {
       </Button>
       <ul>
         {contactInfo.map((info) => {
-          let placeholder = `https://${info.type}.com`
-          if (info.type === 'email') placeholder = 'example@mail.com'
-          if (info.type === 'phone') placeholder = '+1234567890'
+          let inputProps: JSX.IntrinsicElements['input'] = {
+            type: 'url',
+            placeholder: `https://${info.type}.com`,
+          }
+          if (info.type === 'email') {
+            inputProps = {
+              type: 'email',
+              placeholder: 'example@mail.com',
+            }
+          }
+          if (info.type === 'phone') {
+            inputProps = {
+              type: 'tel',
+              placeholder: '+1234567890',
+            }
+          }
           return (
             <li key={info.id} className="grid grid-cols-2 gap-2">
               <select
@@ -61,7 +74,7 @@ export function ContactFields() {
                   className="block w-full"
                   value={info.value}
                   onChange={(event) => handleChange(info.id, 'value', event.target.value)}
-                  placeholder={placeholder}
+                  {...inputProps}
                 />
                 <button type="button" onClick={() => handleDelete(info.id)}>
                   <XIcon size={16} />
