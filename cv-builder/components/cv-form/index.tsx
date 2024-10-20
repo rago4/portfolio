@@ -1,4 +1,5 @@
 import { ContactFields } from '@/cv-builder/components/cv-form/contact-fields'
+import { EducationFields } from '@/cv-builder/components/cv-form/education-fields'
 import { ExperienceFields } from '@/cv-builder/components/cv-form/experience-fields'
 import { Heading } from '@/cv-builder/components/ui/heading'
 import { Input } from '@/cv-builder/components/ui/input'
@@ -64,6 +65,10 @@ export function CVForm() {
       <div>
         <Heading>Work Experience</Heading>
         <ExperienceFields />
+      </div>
+      <div>
+        <Heading>Education</Heading>
+        <EducationFields />
       </div>
     </form>
   )
