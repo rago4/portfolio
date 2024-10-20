@@ -31,7 +31,7 @@ export function EducationFields() {
     setDocumentStatus('idle')
   }
   return (
-    <div>
+    <div className="space-y-3">
       <Button
         className="flex items-center space-x-0.5"
         variant="outline"
@@ -41,7 +41,7 @@ export function EducationFields() {
         <PlusIcon size={16} />
         <span>Add Education</span>
       </Button>
-      <ul>
+      <ul className="space-y-2">
         {educationInfo.map((info) => {
           return (
             <li key={info.id} className="relative rounded-md border border-slate-200 p-3 shadow-md">

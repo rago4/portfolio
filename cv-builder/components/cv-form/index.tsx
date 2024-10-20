@@ -10,8 +10,8 @@ import { useMainContext } from '@/cv-builder/main-context'
 export function CVForm() {
   const { fields, onFieldChange } = useMainContext()
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
-      <div>
+    <form className="space-y-5" onSubmit={(event) => event.preventDefault()}>
+      <div className="space-y-1">
         <Heading>Personal Information</Heading>
         <div className="grid grid-cols-2 gap-2">
           <div>
@@ -38,11 +38,11 @@ export function CVForm() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="space-y-1">
         <Heading>Contact Information</Heading>
         <ContactFields />
       </div>
-      <div>
+      <div className="space-y-1">
         <Heading>Summary</Heading>
         <Textarea
           className="block w-full resize-none"
@@ -52,7 +52,7 @@ export function CVForm() {
           placeholder="A passionate software engineer with 5 years of experience..."
         />
       </div>
-      <div>
+      <div className="space-y-1">
         <Heading>Skills</Heading>
         <Textarea
           className="block w-full resize-none"
@@ -62,15 +62,15 @@ export function CVForm() {
           placeholder="A list of skills separated by semicolon e.g. React.js, Next.js; JavaScript (ES6+), TypeScript"
         />
       </div>
-      <div>
+      <div className="space-y-1">
         <Heading>Work Experience</Heading>
         <ExperienceFields />
       </div>
-      <div>
+      <div className="space-y-1">
         <Heading>Education</Heading>
         <EducationFields />
       </div>
-      <div>
+      <div className="space-y-1">
         <Heading>Consent</Heading>
         <Textarea
           className="block w-full resize-none"
