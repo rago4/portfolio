@@ -115,6 +115,7 @@ export function CVPreview() {
           </div>
         </div>
       )}
+      {fields.consent.length > 0 && <p className="text-xs">{fields.consent}</p>}
     </div>
   )
 }

@@ -70,6 +70,16 @@ export function CVForm() {
         <Heading>Education</Heading>
         <EducationFields />
       </div>
+      <div>
+        <Heading>Consent</Heading>
+        <Textarea
+          className="block w-full resize-none"
+          value={fields.consent}
+          onChange={(event) => onFieldChange('consent', event.target.value)}
+          rows={3}
+          placeholder="I agree to the processing of personal data..."
+        />
+      </div>
     </form>
   )
 }
