@@ -26,7 +26,7 @@ export function ContactFields() {
     setDocumentStatus('idle')
   }
   return (
-    <div>
+    <div className="space-y-3">
       <Button
         className="flex items-center space-x-0.5"
         variant="outline"
@@ -36,7 +36,7 @@ export function ContactFields() {
         <PlusIcon size={16} />
         <span>Add Contact</span>
       </Button>
-      <ul>
+      <ul className="space-y-2">
         {contactInfo.map((info) => {
           let inputProps: JSX.IntrinsicElements['input'] = {
             type: 'url',
