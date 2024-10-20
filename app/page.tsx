@@ -33,7 +33,7 @@ function LinkButton({
 
 export default function Home() {
   return (
-    <main className="font-geist-mono flex min-h-screen items-center justify-center bg-neutral-950 p-5 lowercase text-white">
+    <main className="flex min-h-screen items-center justify-center bg-neutral-950 p-5 font-geist-mono lowercase text-white">
       <div className="max-w-xl text-balance text-center">
         <h1 className="text-2xl font-bold">Rafal Golawski</h1>
         <p className="mt-2 text-sm leading-relaxed text-neutral-100">
