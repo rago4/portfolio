@@ -3,6 +3,7 @@ import { PlusIcon, XIcon } from 'lucide-react'
 import { Button } from '@/cv-builder/components/ui/button'
 import { Input } from '@/cv-builder/components/ui/input'
 import { Label } from '@/cv-builder/components/ui/label'
+import { Textarea } from '@/cv-builder/components/ui/textarea'
 import { type ExperienceInfo, useMainContext } from '@/cv-builder/main-context'
 import { uuid } from '@/cv-builder/utils'
 
@@ -95,6 +96,17 @@ export function ExperienceFields() {
                   />
                   <p className="text-xs">Leave empty if present</p>
                 </div>
+              </div>
+              <div className="col-span-2">
+                <Label htmlFor={`description-${info.id}`}>Description</Label>
+                <Textarea
+                  id={`description-${info.id}`}
+                  className="block w-full resize-none"
+                  value={info.description}
+                  onChange={(event) => handleChange(info.id, 'description', event.target.value)}
+                  rows={3}
+                  placeholder="Describe your role and responsibilities. Use semicolons to switch from sentence to a list."
+                />
               </div>
             </li>
           )
