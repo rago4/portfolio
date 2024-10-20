@@ -1,4 +1,4 @@
-import { BlobProvider, Document, Font, Page, StyleSheet, Text, View } from '@react-pdf/renderer'
+import { BlobProvider, Document, Font, Page, Styles, Text, View } from '@react-pdf/renderer'
 
 import { Button, styles as buttonStyles } from '@/resume-builder/components/ui/button'
 import { useMainContext } from '@/resume-builder/main-context'
@@ -6,16 +6,39 @@ import { cn } from '@/resume-builder/utils'
 
 Font.register({
   family: 'Geist Sans',
-  src: '/GeistVF.woff',
+  fonts: [
+    { src: '/fonts/Geist-Regular.otf', fontWeight: 400 },
+    { src: '/fonts/Geist-SemiBold.otf', fontWeight: 500 },
+    { src: '/fonts/Geist-Bold.otf', fontWeight: 700 },
+  ],
 })
 
-const styles = StyleSheet.create({
+const styles: Styles = {
+  // shared
+  section: {
+    marginBottom: 24,
+  },
+  text: {
+    color: '#475569',
+  },
+  link: {
+    textDecoration: 'underline',
+  },
+  // components
   mainView: {
     fontFamily: 'Geist Sans',
+    fontSize: 16,
+    fontWeight: 400,
+    color: '#0f172a',
+    padding: 32,
   },
-})
+  name: {
+    fontSize: 30,
+    fontWeight: 700,
+  },
+}
 
-export function PDFExport() {
+export function PdfExport() {
   const { documentStatus, setDocumentStatus, fields } = useMainContext()
   if (documentStatus === 'idle') {
     return (
@@ -30,8 +53,11 @@ export function PDFExport() {
         <Document>
           <Page size="A4">
             <View style={styles.mainView}>
-              {fields.name.length > 0 && <Text>{fields.name}</Text>}
-              {fields.title.length > 0 && <Text>{fields.title}</Text>}
+              <View style={styles.section}>
+                <Text style={styles.name}>{fields.name}</Text>
+                <Text style={styles.text}>{fields.title}</Text>
+              </View>
+              <View style={styles.section}></View>
             </View>
           </Page>
         </Document>
