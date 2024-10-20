@@ -6,10 +6,10 @@ import { type ContactInfo, contactType, useMainContext } from '@/cv-builder/main
 import { uuid } from '@/cv-builder/utils'
 
 export function ContactFields() {
-  const { resetDocumentStatus, contactInfo, setContactInfo } = useMainContext()
+  const { setDocumentStatus, contactInfo, setContactInfo } = useMainContext()
   const handleAdd = () => {
     setContactInfo((contactInfo) => [...contactInfo, { id: uuid(), type: 'email', value: '' }])
-    resetDocumentStatus()
+    setDocumentStatus('idle')
   }
   const handleChange = (id: string, key: keyof ContactInfo, value: string) => {
     setContactInfo((contactInfo) => {
@@ -17,13 +17,13 @@ export function ContactFields() {
         return info.id === id ? { ...info, [key]: value } : info
       })
     })
-    resetDocumentStatus()
+    setDocumentStatus('idle')
   }
   const handleDelete = (id: string) => {
     setContactInfo((contactInfo) => {
       return contactInfo.filter((info) => info.id !== id)
     })
-    resetDocumentStatus()
+    setDocumentStatus('idle')
   }
   return (
     <div>

@@ -39,10 +39,10 @@ export function PDFExport() {
     >
       {({ loading, error, url }) => {
         if (loading) {
-          return <p className="font-mono text-sm text-slate-500">Preparing your PDF...</p>
+          return <p className="font-mono text-sm text-slate-600">Preparing your PDF...</p>
         }
         if (error) {
-          return <p className="font-mono text-sm text-slate-500">{`Error: ${error.message}`}</p>
+          return <p className="font-mono text-sm text-slate-600">{`Error: ${error.message}`}</p>
         }
         return (
           <a

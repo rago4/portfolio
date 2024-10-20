@@ -22,7 +22,7 @@ export type ContactInfo = {
 
 type Context = {
   documentStatus: DocumentStatus
-  resetDocumentStatus: () => void
+  setDocumentStatus: Dispatch<SetStateAction<DocumentStatus>>
   fields: Fields
   onFieldChange: (key: keyof Fields, value: string) => void
   contactInfo: ContactInfo[]
@@ -56,18 +56,15 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
     title: '',
   })
   const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
-  const resetDocumentStatus = () => {
-    setDocumentStatus('idle')
-  }
   return (
     <MainContext.Provider
       value={{
         documentStatus,
-        resetDocumentStatus,
+        setDocumentStatus,
         fields,
         onFieldChange: (key: keyof Fields, value: string) => {
           setFields((fields) => ({ ...fields, [key]: value }))
-          resetDocumentStatus()
+          setDocumentStatus('idle')
         },
         contactInfo,
         setContactInfo,
