@@ -6,8 +6,8 @@ import { ResumeForm } from '@/resume-builder/components/resume-form'
 import { ResumePreview } from '@/resume-builder/components/resume-preview'
 import { MainContextProvider } from '@/resume-builder/main-context'
 
-const PDFExport = dynamic(
-  () => import('@/resume-builder/components/pdf-export').then((meta) => meta.PDFExport),
+const PdfExport = dynamic(
+  () => import('@/resume-builder/components/pdf-export').then((meta) => meta.PdfExport),
   { ssr: false }
 )
 
@@ -19,7 +19,7 @@ export function MainContent() {
       </section>
       <section className="space-y-3 bg-slate-50 p-6">
         <ResumePreview />
-        <PDFExport />
+        <PdfExport />
       </section>
     </MainContextProvider>
   )
