@@ -1,4 +1,5 @@
 import { ContactFields } from '@/cv-builder/components/cv-form/contact-fields'
+import { ExperienceFields } from '@/cv-builder/components/cv-form/experience-fields'
 import { Heading } from '@/cv-builder/components/ui/heading'
 import { Input } from '@/cv-builder/components/ui/input'
 import { Label } from '@/cv-builder/components/ui/label'
@@ -12,21 +13,23 @@ export function CVForm() {
       <div>
         <Heading>Personal Information</Heading>
         <div className="grid grid-cols-2 gap-2">
-          <div className="space-y-0.5">
+          <div>
             <Label htmlFor="name">Name</Label>
             <Input
               id="name"
               className="block w-full"
+              type="text"
               value={fields.name}
               onChange={(event) => onFieldChange('name', event.target.value)}
               placeholder="John Doe"
             />
           </div>
-          <div className="space-y-0.5">
+          <div>
             <Label htmlFor="title">Title</Label>
             <Input
               id="title"
               className="block w-full"
+              type="text"
               value={fields.title}
               onChange={(event) => onFieldChange('title', event.target.value)}
               placeholder="Software Engineer"
@@ -57,6 +60,10 @@ export function CVForm() {
           rows={3}
           placeholder="A list of skills separated by semicolon e.g. React.js, Next.js; JavaScript (ES6+), TypeScript"
         />
+      </div>
+      <div>
+        <Heading>Work Experience</Heading>
+        <ExperienceFields />
       </div>
     </form>
   )
