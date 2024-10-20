@@ -2,6 +2,7 @@ import { ContactFields } from '@/cv-builder/components/cv-form/contact-fields'
 import { Heading } from '@/cv-builder/components/ui/heading'
 import { Input } from '@/cv-builder/components/ui/input'
 import { Label } from '@/cv-builder/components/ui/label'
+import { Textarea } from '@/cv-builder/components/ui/textarea'
 import { useMainContext } from '@/cv-builder/main-context'
 
 export function CVForm() {
@@ -36,6 +37,16 @@ export function CVForm() {
       <div>
         <Heading>Contact Information</Heading>
         <ContactFields />
+      </div>
+      <div>
+        <Heading>Summary</Heading>
+        <Textarea
+          className="block w-full resize-none"
+          value={fields.summary}
+          onChange={(event) => onFieldChange('summary', event.target.value)}
+          rows={3}
+          placeholder="A passionate software engineer with 5 years of experience..."
+        />
       </div>
     </form>
   )
