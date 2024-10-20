@@ -39,7 +39,11 @@ export function PDFExport() {
     >
       {({ loading, error, url }) => {
         if (loading) {
-          return <p className="font-mono text-sm text-slate-600">Preparing your PDF...</p>
+          return (
+            <Button variant="primary" disabled>
+              Generating...
+            </Button>
+          )
         }
         if (error) {
           return <p className="font-mono text-sm text-slate-600">{`Error: ${error.message}`}</p>
