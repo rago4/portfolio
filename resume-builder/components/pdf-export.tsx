@@ -97,21 +97,23 @@ export function PdfExport() {
                 <Text style={styles.name}>{fields.name}</Text>
                 <Text style={styles.title}>{fields.title}</Text>
               </View>
-              <View style={styles.section}>
-                {contactInfo.map((info) => {
-                  let linkSrc = info.value
-                  if (info.type === 'email') linkSrc = `mailto:${info.value}`
-                  if (info.type === 'phone') linkSrc = `tel:${info.value}`
-                  return (
-                    <View style={styles.contactItem} key={info.id}>
-                      <PdfImage style={styles.contactIcon} src={pngIconMap[info.type]} />
-                      <Link style={styles.contactLink} src={linkSrc}>
-                        {info.value}
-                      </Link>
-                    </View>
-                  )
-                })}
-              </View>
+              {contactInfo.length > 0 && (
+                <View style={styles.section}>
+                  {contactInfo.map((info) => {
+                    let linkSrc = info.value
+                    if (info.type === 'email') linkSrc = `mailto:${info.value}`
+                    if (info.type === 'phone') linkSrc = `tel:${info.value}`
+                    return (
+                      <View style={styles.contactItem} key={info.id}>
+                        <PdfImage style={styles.contactIcon} src={pngIconMap[info.type]} />
+                        <Link style={styles.contactLink} src={linkSrc}>
+                          {info.value}
+                        </Link>
+                      </View>
+                    )
+                  })}
+                </View>
+              )}
             </View>
           </Page>
         </Document>
