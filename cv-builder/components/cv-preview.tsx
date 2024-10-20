@@ -21,8 +21,15 @@ const contactIconMap = {
   twitter: TwitterIcon,
 }
 
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
 export function CVPreview() {
-  const { fields, contactInfo } = useMainContext()
+  const { fields, contactInfo, experienceInfo } = useMainContext()
   const skills = fields.skills.length > 0 ? fields.skills.split(';') : []
   return (
     <div className="rounded-lg bg-white p-6 shadow-lg">
@@ -64,6 +71,36 @@ export function CVPreview() {
               return <li key={`skill-${index}`}>{skill}</li>
             })}
           </ul>
+        </div>
+      )}
+      {experienceInfo.length > 0 && (
+        <div>
+          <Heading>Work Experience</Heading>
+          {experienceInfo.map((info) => {
+            const description = info.description.includes(';')
+              ? info.description.split(';')
+              : info.description
+            return (
+              <div key={info.id}>
+                <p className="font-semibold">{[info.position, info.company].join(' - ')}</p>
+                <p className="text-slate-600">
+                  {[
+                    formatDate(info.startDate),
+                    info.endDate ? formatDate(info.endDate) : 'Present',
+                  ].join(' - ')}
+                </p>
+                {typeof description === 'string' ? (
+                  <p className="text-slate-600">{info.description}</p>
+                ) : (
+                  <ul className="list-inside list-disc text-slate-600">
+                    {description.map((item, index) => {
+                      return <li key={`experience-${info.id}-description-item-${index}`}>{item}</li>
+                    })}
+                  </ul>
+                )}
+              </div>
+            )
+          })}
         </div>
       )}
     </div>
