@@ -22,6 +22,15 @@ export type ContactInfo = {
   value: string
 }
 
+export type ExperienceInfo = {
+  id: string
+  company: string
+  position: string
+  startDate: string
+  endDate: string
+  description: string
+}
+
 type Context = {
   documentStatus: DocumentStatus
   setDocumentStatus: Dispatch<SetStateAction<DocumentStatus>>
@@ -29,6 +38,8 @@ type Context = {
   onFieldChange: (key: keyof Fields, value: string) => void
   contactInfo: ContactInfo[]
   setContactInfo: Dispatch<SetStateAction<ContactInfo[]>>
+  experienceInfo: ExperienceInfo[]
+  setExperienceInfo: Dispatch<SetStateAction<ExperienceInfo[]>>
 }
 
 export const contactType = {
@@ -60,18 +71,21 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
     skills: '',
   })
   const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
+  const [experienceInfo, setExperienceInfo] = useState<ExperienceInfo[]>([])
   return (
     <MainContext.Provider
       value={{
         documentStatus,
         setDocumentStatus,
         fields,
-        onFieldChange: (key: keyof Fields, value: string) => {
+        onFieldChange: (key, value) => {
           setFields((fields) => ({ ...fields, [key]: value }))
           setDocumentStatus('idle')
         },
         contactInfo,
         setContactInfo,
+        experienceInfo,
+        setExperienceInfo,
       }}
     >
       {children}

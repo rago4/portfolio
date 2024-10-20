@@ -53,13 +53,13 @@ export function CVPreview() {
       {fields.summary.length > 0 && (
         <div>
           <Heading>Summary</Heading>
-          <p className="leading-relaxed text-slate-600">{fields.summary}</p>
+          <p className="text-slate-600">{fields.summary}</p>
         </div>
       )}
       {skills.length > 0 && (
         <div>
           <Heading>Skills</Heading>
-          <ul className="list-inside list-disc leading-relaxed text-slate-600">
+          <ul className="list-inside list-disc text-slate-600">
             {skills.map((skill, index) => {
               return <li key={`skill-${index}`}>{skill}</li>
             })}
