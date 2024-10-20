@@ -32,11 +32,13 @@ export function ResumePreview() {
   const { fields, contactInfo, experienceInfo, educationInfo } = useMainContext()
   const skills = fields.skills.length > 0 ? fields.skills.split(';') : []
   return (
-    <div className="rounded-lg bg-white p-6 shadow-lg">
-      {fields.name.length > 0 && <p className="text-3xl font-bold">{fields.name}</p>}
-      {fields.title.length > 0 && <p className="text-slate-600">{fields.title}</p>}
+    <div className="space-y-6 rounded-lg bg-white p-6 shadow-lg">
+      <div>
+        {fields.name.length > 0 && <p className="text-3xl font-bold">{fields.name}</p>}
+        {fields.title.length > 0 && <p className="text-slate-600">{fields.title}</p>}
+      </div>
       {contactInfo.length > 0 && (
-        <ul className="text-slate-600">
+        <ul className="space-y-1 text-slate-600">
           {contactInfo.map((info) => {
             const Icon = contactIconMap[info.type]
             let linkProps: JSX.IntrinsicElements['a'] = {
@@ -58,13 +60,13 @@ export function ResumePreview() {
         </ul>
       )}
       {fields.summary.length > 0 && (
-        <div>
+        <div className="space-y-2">
           <Heading>Summary</Heading>
           <p className="text-slate-600">{fields.summary}</p>
         </div>
       )}
       {skills.length > 0 && (
-        <div>
+        <div className="space-y-2">
           <Heading>Skills</Heading>
           <ul className="list-inside list-disc text-slate-600">
             {skills.map((skill, index) => {
@@ -74,36 +76,40 @@ export function ResumePreview() {
         </div>
       )}
       {experienceInfo.length > 0 && (
-        <div>
+        <div className="space-y-2">
           <Heading>Work Experience</Heading>
-          {experienceInfo.map((info) => {
-            const description = info.description.includes(';')
-              ? info.description.split(';')
-              : info.description
-            return (
-              <div key={info.id}>
-                <p className="font-semibold">{`${info.position} - ${info.company}`}</p>
-                <p className="text-slate-600">
-                  {`${formatDate(info.startDate)} - ${info.endDate ? formatDate(info.endDate) : 'Present'}`}
-                </p>
-                {typeof description === 'string' ? (
-                  <p className="text-slate-600">{info.description}</p>
-                ) : (
-                  <ul className="list-inside list-disc text-slate-600">
-                    {description.map((item, index) => {
-                      return <li key={`experience-${info.id}-description-item-${index}`}>{item}</li>
-                    })}
-                  </ul>
-                )}
-              </div>
-            )
-          })}
+          <div className="space-y-4">
+            {experienceInfo.map((info) => {
+              const description = info.description.includes(';')
+                ? info.description.split(';')
+                : info.description
+              return (
+                <div key={info.id}>
+                  <p className="font-semibold">{`${info.position} - ${info.company}`}</p>
+                  <p className="mb-1 text-slate-600">
+                    {`${formatDate(info.startDate)} - ${info.endDate ? formatDate(info.endDate) : 'Present'}`}
+                  </p>
+                  {typeof description === 'string' ? (
+                    <p className="text-slate-600">{info.description}</p>
+                  ) : (
+                    <ul className="list-inside list-disc text-slate-600">
+                      {description.map((item, index) => {
+                        return (
+                          <li key={`experience-${info.id}-description-item-${index}`}>{item}</li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
       {educationInfo.length > 0 && (
-        <div>
+        <div className="space-y-2">
           <Heading>Education</Heading>
-          <div>
+          <div className="space-y-4">
             {educationInfo.map((info) => {
               return (
                 <div key={info.id}>
