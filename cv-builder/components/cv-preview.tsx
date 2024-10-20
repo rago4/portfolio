@@ -29,7 +29,7 @@ function formatDate(dateStr: string) {
 }
 
 export function CVPreview() {
-  const { fields, contactInfo, experienceInfo } = useMainContext()
+  const { fields, contactInfo, experienceInfo, educationInfo } = useMainContext()
   const skills = fields.skills.length > 0 ? fields.skills.split(';') : []
   return (
     <div className="rounded-lg bg-white p-6 shadow-lg">
@@ -82,12 +82,9 @@ export function CVPreview() {
               : info.description
             return (
               <div key={info.id}>
-                <p className="font-semibold">{[info.position, info.company].join(' - ')}</p>
+                <p className="font-semibold">{`${info.position} - ${info.company}`}</p>
                 <p className="text-slate-600">
-                  {[
-                    formatDate(info.startDate),
-                    info.endDate ? formatDate(info.endDate) : 'Present',
-                  ].join(' - ')}
+                  {`${formatDate(info.startDate)} - ${info.endDate ? formatDate(info.endDate) : 'Present'}`}
                 </p>
                 {typeof description === 'string' ? (
                   <p className="text-slate-600">{info.description}</p>
@@ -101,6 +98,21 @@ export function CVPreview() {
               </div>
             )
           })}
+        </div>
+      )}
+      {educationInfo.length > 0 && (
+        <div>
+          <Heading>Education</Heading>
+          <div>
+            {educationInfo.map((info) => {
+              return (
+                <div key={info.id}>
+                  <p className="font-semibold">{info.degree}</p>
+                  <p className="text-slate-600">{`${info.institution}, ${info.startYear} - ${info.endYear ? info.endYear : 'Present'}`}</p>
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </div>
