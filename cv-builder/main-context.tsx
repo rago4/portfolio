@@ -31,6 +31,13 @@ export type ExperienceInfo = {
   description: string
 }
 
+export type EducationInfo = {
+  id: string
+  degree: string
+  institution: string
+  graduationYear: string
+}
+
 type Context = {
   documentStatus: DocumentStatus
   setDocumentStatus: Dispatch<SetStateAction<DocumentStatus>>
@@ -40,6 +47,8 @@ type Context = {
   setContactInfo: Dispatch<SetStateAction<ContactInfo[]>>
   experienceInfo: ExperienceInfo[]
   setExperienceInfo: Dispatch<SetStateAction<ExperienceInfo[]>>
+  educationInfo: EducationInfo[]
+  setEducationInfo: Dispatch<SetStateAction<EducationInfo[]>>
 }
 
 export const contactType = {
@@ -72,6 +81,7 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
   })
   const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
   const [experienceInfo, setExperienceInfo] = useState<ExperienceInfo[]>([])
+  const [educationInfo, setEducationInfo] = useState<EducationInfo[]>([])
   return (
     <MainContext.Provider
       value={{
@@ -86,6 +96,8 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
         setContactInfo,
         experienceInfo,
         setExperienceInfo,
+        educationInfo,
+        setEducationInfo,
       }}
     >
       {children}
