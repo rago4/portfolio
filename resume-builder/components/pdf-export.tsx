@@ -1,8 +1,8 @@
 import { BlobProvider, Document, Font, Page, StyleSheet, Text, View } from '@react-pdf/renderer'
 
-import { Button, styles as buttonStyles } from '@/cv-builder/components/ui/button'
-import { useMainContext } from '@/cv-builder/main-context'
-import { cn } from '@/cv-builder/utils'
+import { Button, styles as buttonStyles } from '@/resume-builder/components/ui/button'
+import { useMainContext } from '@/resume-builder/main-context'
+import { cn } from '@/resume-builder/utils'
 
 Font.register({
   family: 'Geist Sans',
@@ -48,7 +48,7 @@ export function PDFExport() {
           <a
             className={cn('inline-block', buttonStyles.base, buttonStyles.primary)}
             href={url || ''}
-            download="cv.pdf"
+            download="resume.pdf"
           >
             Download PDF
           </a>

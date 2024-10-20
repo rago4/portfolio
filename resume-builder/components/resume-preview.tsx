@@ -8,8 +8,8 @@ import {
   TwitterIcon,
 } from 'lucide-react'
 
-import { Heading } from '@/cv-builder/components/ui/heading'
-import { useMainContext } from '@/cv-builder/main-context'
+import { Heading } from '@/resume-builder/components/ui/heading'
+import { useMainContext } from '@/resume-builder/main-context'
 
 const contactIconMap = {
   dribbble: DribbbleIcon,
@@ -28,7 +28,7 @@ function formatDate(dateStr: string) {
   })
 }
 
-export function CVPreview() {
+export function ResumePreview() {
   const { fields, contactInfo, experienceInfo, educationInfo } = useMainContext()
   const skills = fields.skills.length > 0 ? fields.skills.split(';') : []
   return (

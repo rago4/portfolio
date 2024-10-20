@@ -1,4 +1,4 @@
-import { cn } from '@/cv-builder/utils'
+import { cn } from '@/resume-builder/utils'
 
 export const styles = {
   base: 'px-3 py-2 rounded-md font-medium text-sm transition-colors',

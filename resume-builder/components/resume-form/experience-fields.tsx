@@ -1,11 +1,11 @@
 import { PlusIcon, XIcon } from 'lucide-react'
 
-import { Button } from '@/cv-builder/components/ui/button'
-import { Input } from '@/cv-builder/components/ui/input'
-import { Label } from '@/cv-builder/components/ui/label'
-import { Textarea } from '@/cv-builder/components/ui/textarea'
-import { type ExperienceInfo, useMainContext } from '@/cv-builder/main-context'
-import { uuid } from '@/cv-builder/utils'
+import { Button } from '@/resume-builder/components/ui/button'
+import { Input } from '@/resume-builder/components/ui/input'
+import { Label } from '@/resume-builder/components/ui/label'
+import { Textarea } from '@/resume-builder/components/ui/textarea'
+import { type ExperienceInfo, useMainContext } from '@/resume-builder/main-context'
+import { uuid } from '@/resume-builder/utils'
 
 export function ExperienceFields() {
   const { setDocumentStatus, experienceInfo, setExperienceInfo } = useMainContext()

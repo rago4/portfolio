@@ -1,8 +1,8 @@
-import { cn } from '@/cv-builder/utils'
+import { cn } from '@/resume-builder/utils'
 
-export function Input({ className, ...props }: JSX.IntrinsicElements['input']) {
+export function Textarea({ className, ...props }: JSX.IntrinsicElements['textarea']) {
   return (
-    <input
+    <textarea
       className={cn(
         'rounded-md border border-slate-300 px-2 py-1 text-sm text-slate-900 shadow',
         className
