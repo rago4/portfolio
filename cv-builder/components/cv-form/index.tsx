@@ -48,6 +48,16 @@ export function CVForm() {
           placeholder="A passionate software engineer with 5 years of experience..."
         />
       </div>
+      <div>
+        <Heading>Skills</Heading>
+        <Textarea
+          className="block w-full resize-none"
+          value={fields.skills}
+          onChange={(event) => onFieldChange('skills', event.target.value)}
+          rows={3}
+          placeholder="A list of skills separated by semicolon e.g. React.js, Next.js; JavaScript (ES6+), TypeScript"
+        />
+      </div>
     </form>
   )
 }

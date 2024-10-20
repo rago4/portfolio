@@ -23,6 +23,7 @@ const contactIconMap = {
 
 export function CVPreview() {
   const { fields, contactInfo } = useMainContext()
+  const skills = fields.skills.length > 0 ? fields.skills.split(';') : []
   return (
     <div className="rounded-lg bg-white p-6 shadow-lg">
       {fields.name.length > 0 && <p className="text-3xl font-bold">{fields.name}</p>}
@@ -52,7 +53,17 @@ export function CVPreview() {
       {fields.summary.length > 0 && (
         <div>
           <Heading>Summary</Heading>
-          <p className="text-slate-600">{fields.summary}</p>
+          <p className="leading-relaxed text-slate-600">{fields.summary}</p>
+        </div>
+      )}
+      {skills.length > 0 && (
+        <div>
+          <Heading>Skills</Heading>
+          <ul className="list-inside list-disc leading-relaxed text-slate-600">
+            {skills.map((skill, index) => {
+              return <li key={`skill-${index}`}>{skill}</li>
+            })}
+          </ul>
         </div>
       )}
     </div>

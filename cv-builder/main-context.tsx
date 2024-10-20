@@ -13,6 +13,7 @@ type Fields = {
   name: string
   title: string
   summary: string
+  skills: string
 }
 
 export type ContactInfo = {
@@ -56,6 +57,7 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
     name: '',
     title: '',
     summary: '',
+    skills: '',
   })
   const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
   return (
