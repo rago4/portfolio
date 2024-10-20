@@ -5,11 +5,16 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './cv-builder/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       animation: {
         flicker: 'flicker 5s ease infinite',
+      },
+      fontFamily: {
+        'geist-mono': ['var(--font-geist-mono)'],
+        'geist-sans': ['var(--font-geist-sans)'],
       },
       keyframes: {
         flicker: {

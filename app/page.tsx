@@ -33,8 +33,8 @@ function LinkButton({
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-neutral-950 p-5 font-mono">
-      <div className="max-w-xl text-balance text-center lowercase text-white">
+    <main className="font-geist-mono flex min-h-screen items-center justify-center bg-neutral-950 p-5 lowercase text-white">
+      <div className="max-w-xl text-balance text-center">
         <h1 className="text-2xl font-bold">Rafal Golawski</h1>
         <p className="mt-2 text-sm leading-relaxed text-neutral-100">
           TLDR: Front-end developer with over 6 years of experience. Lifting weights four times a
