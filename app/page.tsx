@@ -37,7 +37,7 @@ export default function Home() {
       <div className="max-w-xl text-balance text-center">
         <h1 className="text-2xl font-bold">Rafal Golawski</h1>
         <p className="mt-2 text-sm leading-relaxed text-neutral-100">
-          TLDR: Front-end developer with over 6 years of experience. Lifting weights four times a
+          TLDR: Front-end developer with over 6 years of experience. Lifting weights three times a
           week, zone 2 running once a week, coding at 9-5. Simplicity over complexity.
         </p>
         <div className="mb-7 mt-5 flex items-center space-x-4">

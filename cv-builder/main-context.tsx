@@ -1,4 +1,13 @@
-import { createContext, type ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+  useContext,
+  useState,
+} from 'react'
+
+type DocumentStatus = 'idle' | 'ready'
 
 type Fields = {
   name: string
@@ -6,6 +15,8 @@ type Fields = {
 }
 
 type Context = {
+  documentStatus: DocumentStatus
+  setDocumentStatus: Dispatch<SetStateAction<DocumentStatus>>
   fields: Fields
   onFieldChange: (key: keyof Fields, value: string) => void
 }
@@ -21,6 +32,7 @@ export const useMainContext = () => {
 }
 
 export function MainContextProvider({ children }: { children: ReactNode }) {
+  const [documentStatus, setDocumentStatus] = useState<DocumentStatus>('idle')
   const [fields, setFields] = useState<Fields>({
     name: '',
     title: '',
@@ -28,9 +40,12 @@ export function MainContextProvider({ children }: { children: ReactNode }) {
   return (
     <MainContext.Provider
       value={{
+        documentStatus,
+        setDocumentStatus,
         fields,
         onFieldChange: (key: keyof Fields, value: string) => {
           setFields((fields) => ({ ...fields, [key]: value }))
+          setDocumentStatus('idle')
         },
       }}
     >
