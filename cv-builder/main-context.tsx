@@ -35,7 +35,8 @@ export type EducationInfo = {
   id: string
   degree: string
   institution: string
-  graduationYear: string
+  startYear: string
+  endYear: string
 }
 
 type Context = {

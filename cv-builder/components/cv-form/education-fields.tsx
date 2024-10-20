@@ -12,7 +12,7 @@ export function EducationFields() {
   const handleAdd = () => {
     setEducationInfo((educationInfo) => [
       ...educationInfo,
-      { id: uuid(), degree: '', institution: '', graduationYear: '' },
+      { id: uuid(), degree: '', institution: '', startYear: '', endYear: '' },
     ])
     setDocumentStatus('idle')
   }
@@ -52,7 +52,7 @@ export function EducationFields() {
               >
                 <XIcon size={16} />
               </button>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Label htmlFor={`degree-${info.id}`}>Degree</Label>
                   <Input
@@ -76,19 +76,35 @@ export function EducationFields() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor={`graduation-year-${info.id}`}>Graduation year</Label>
+                  <Label htmlFor={`start-year-${info.id}`}>Start year</Label>
                   <Input
-                    id={`graduation-year-${info.id}`}
+                    id={`start-year-${info.id}`}
                     className="block w-full"
                     type="number"
                     min={1900}
                     max={currentYear}
-                    value={info.graduationYear}
+                    value={info.startYear}
                     onChange={(event) => {
-                      handleChange(info.id, 'graduationYear', event.target.value)
+                      handleChange(info.id, 'startYear', event.target.value)
                     }}
                     placeholder={String(currentYear - 4)}
                   />
+                </div>
+                <div>
+                  <Label htmlFor={`end-year-${info.id}`}>End year</Label>
+                  <Input
+                    id={`end-year-${info.id}`}
+                    className="block w-full"
+                    type="number"
+                    min={1900}
+                    max={currentYear}
+                    value={info.endYear}
+                    onChange={(event) => {
+                      handleChange(info.id, 'endYear', event.target.value)
+                    }}
+                    placeholder={String(currentYear)}
+                  />
+                  <p className="text-xs">Leave empty if present</p>
                 </div>
               </div>
             </li>
