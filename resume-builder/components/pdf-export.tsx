@@ -1,4 +1,14 @@
-import { BlobProvider, Document, Font, Page, Styles, Text, View } from '@react-pdf/renderer'
+import {
+  BlobProvider,
+  Document,
+  Font,
+  Image as PdfImage,
+  Link,
+  Page,
+  Styles,
+  Text,
+  View,
+} from '@react-pdf/renderer'
 
 import { Button, styles as buttonStyles } from '@/resume-builder/components/ui/button'
 import { useMainContext } from '@/resume-builder/main-context'
@@ -13,16 +23,29 @@ Font.register({
   ],
 })
 
+const slate600 = '#475569'
+
+/**
+ * Due to react-pdf's limited SVG support, new icons should be added as follows:
+ * 1. Visit https://lucide.dev/icons/
+ * 2. Download the desired icon as a PNG file
+ * 3. Add the PNG file to the public/png-icons directory
+ * 4. Update this map with the new icon information
+ */
+const pngIconMap = {
+  dribbble: '/png-icons/dribbble.png',
+  email: '/png-icons/mail.png',
+  github: '/png-icons/github.png',
+  linkedin: '/png-icons/linkedin.png',
+  other: '/png-icons/link.png',
+  phone: '/png-icons/phone.png',
+  twitter: '/png-icons/twitter.png',
+}
+
 const styles: Styles = {
   // shared
   section: {
     marginBottom: 24,
-  },
-  text: {
-    color: '#475569',
-  },
-  link: {
-    textDecoration: 'underline',
   },
   // components
   mainView: {
@@ -36,10 +59,27 @@ const styles: Styles = {
     fontSize: 30,
     fontWeight: 700,
   },
+  title: {
+    color: slate600,
+  },
+  contactItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  contactIcon: {
+    width: 16,
+    height: 16,
+    objectFit: 'contain',
+  },
+  contactLink: {
+    color: slate600,
+    marginLeft: 6,
+  },
 }
 
 export function PdfExport() {
-  const { documentStatus, setDocumentStatus, fields } = useMainContext()
+  const { documentStatus, setDocumentStatus, fields, contactInfo } = useMainContext()
   if (documentStatus === 'idle') {
     return (
       <Button variant="primary" onClick={() => setDocumentStatus('ready')}>
@@ -55,9 +95,23 @@ export function PdfExport() {
             <View style={styles.mainView}>
               <View style={styles.section}>
                 <Text style={styles.name}>{fields.name}</Text>
-                <Text style={styles.text}>{fields.title}</Text>
+                <Text style={styles.title}>{fields.title}</Text>
               </View>
-              <View style={styles.section}></View>
+              <View style={styles.section}>
+                {contactInfo.map((info) => {
+                  let linkSrc = info.value
+                  if (info.type === 'email') linkSrc = `mailto:${info.value}`
+                  if (info.type === 'phone') linkSrc = `tel:${info.value}`
+                  return (
+                    <View style={styles.contactItem} key={info.id}>
+                      <PdfImage style={styles.contactIcon} src={pngIconMap[info.type]} />
+                      <Link style={styles.contactLink} src={linkSrc}>
+                        {info.value}
+                      </Link>
+                    </View>
+                  )
+                })}
+              </View>
             </View>
           </Page>
         </Document>
