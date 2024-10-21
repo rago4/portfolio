@@ -12,7 +12,7 @@ import {
 
 import { Button, styles as buttonStyles } from '@/resume-builder/components/ui/button'
 import { useMainContext } from '@/resume-builder/main-context'
-import { cn } from '@/resume-builder/utils'
+import { cn, formatDate, str2arr } from '@/resume-builder/utils'
 
 Font.register({
   family: 'Geist Sans',
@@ -22,8 +22,6 @@ Font.register({
     { src: '/fonts/Geist-Bold.otf', fontWeight: 700 },
   ],
 })
-
-const slate600 = '#475569'
 
 /**
  * Due to react-pdf's limited SVG support, new icons should be added as follows:
@@ -42,44 +40,91 @@ const pngIconMap = {
   twitter: '/png-icons/twitter.png',
 }
 
+const slate = {
+  '600': '#475569',
+  '900': '#0f172a',
+}
+
 const styles: Styles = {
   // shared
   section: {
-    marginBottom: 24,
+    marginBottom: 17.5,
+  },
+  sectionHeading: {
+    fontSize: 15.75,
+    fontWeight: 700,
+    marginBottom: 7,
+  },
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    lineHeight: 1.3125,
+    color: slate['600'],
+  },
+  listBull: {
+    marginRight: 14,
+  },
+  subSection: {
+    marginBottom: 14,
+  },
+  subSectionHeading: {
+    fontWeight: 500,
+    color: slate['900'],
+    marginBottom: 1.75,
+  },
+  subSectionText: {
+    color: slate['600'],
+    lineHeight: 1.3125,
   },
   // components
   mainView: {
     fontFamily: 'Geist Sans',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 400,
-    color: '#0f172a',
-    padding: 32,
+    color: slate['900'],
+    padding: 28,
   },
   name: {
-    fontSize: 30,
+    fontSize: 26.25,
     fontWeight: 700,
   },
   title: {
-    color: slate600,
+    color: slate['600'],
   },
   contactItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 4,
+    color: slate['600'],
+    lineHeight: 1.3125,
+    marginBottom: 3.5,
   },
   contactIcon: {
-    width: 16,
-    height: 16,
+    width: 14,
+    height: 14,
     objectFit: 'contain',
   },
   contactLink: {
-    color: slate600,
-    marginLeft: 6,
+    marginLeft: 5.25,
+    color: slate['600'],
+  },
+  summary: {
+    color: slate['600'],
+    lineHeight: 1.3125,
+  },
+  experienceDate: {
+    color: slate['600'],
+    marginBottom: 3.5,
+  },
+  consent: {
+    fontSize: 10.5,
+    color: slate['900'],
   },
 }
 
 export function PdfExport() {
-  const { documentStatus, setDocumentStatus, fields, contactInfo } = useMainContext()
+  const { documentStatus, setDocumentStatus, fields, contactInfo, experienceInfo, educationInfo } =
+    useMainContext()
+  const skills = str2arr(fields.skills)
   if (documentStatus === 'idle') {
     return (
       <Button variant="primary" onClick={() => setDocumentStatus('ready')}>
@@ -112,6 +157,84 @@ export function PdfExport() {
                       </View>
                     )
                   })}
+                </View>
+              )}
+              {fields.summary.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionHeading}>Summary</Text>
+                  <Text style={styles.summary}>{fields.summary}</Text>
+                </View>
+              )}
+              {skills.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionHeading}>Skills</Text>
+                  <View>
+                    {skills.map((skill, index) => {
+                      return (
+                        <View key={`skill-${index}`} style={styles.listItem}>
+                          <Text style={styles.listBull}>&bull;</Text>
+                          <Text>{skill}</Text>
+                        </View>
+                      )
+                    })}
+                  </View>
+                </View>
+              )}
+              {experienceInfo.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionHeading}>Work Experience</Text>
+                  {experienceInfo.map((info, index) => {
+                    const last = index === experienceInfo.length - 1
+                    const description = info.description.includes(';')
+                      ? str2arr(info.description)
+                      : info.description
+                    return (
+                      <View key={info.id} style={last ? undefined : styles.subSection}>
+                        <Text style={styles.subSectionHeading}>
+                          {`${info.position} - ${info.company}`}
+                        </Text>
+                        <Text style={styles.experienceDate}>
+                          {`${formatDate(info.startDate)} - ${info.endDate ? formatDate(info.endDate) : 'Present'}`}
+                        </Text>
+                        {typeof description === 'string' ? (
+                          <Text style={styles.subSectionText}>{info.description}</Text>
+                        ) : (
+                          description.map((item, index) => {
+                            return (
+                              <View
+                                key={`experience-${info.id}-description-${index}`}
+                                style={styles.listItem}
+                              >
+                                <Text style={styles.listBull}>&bull;</Text>
+                                <Text>{item}</Text>
+                              </View>
+                            )
+                          })
+                        )}
+                      </View>
+                    )
+                  })}
+                </View>
+              )}
+              {educationInfo.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionHeading}>Education</Text>
+                  {educationInfo.map((info, index) => {
+                    const last = index === experienceInfo.length - 1
+                    return (
+                      <View key={info.id} style={last ? undefined : styles.subSection}>
+                        <Text style={styles.subSectionHeading}>{info.degree}</Text>
+                        <Text style={styles.subSectionText}>
+                          {`${info.institution}, ${info.startYear} - ${info.endYear || 'Present'}`}
+                        </Text>
+                      </View>
+                    )
+                  })}
+                </View>
+              )}
+              {fields.consent.length > 0 && (
+                <View>
+                  <Text style={styles.consent}>{fields.consent}</Text>
                 </View>
               )}
             </View>
