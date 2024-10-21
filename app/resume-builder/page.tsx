@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Link from 'next/link'
 
 import { MainContent } from '@/resume-builder/components/main-content'
 
@@ -41,9 +42,30 @@ export default function ResumeBuilderPage() {
           </a>
         </p>
       </header>
-      <main className="grid min-h-screen font-geist-sans text-slate-900 md:grid-cols-2">
+      <main className="grid min-h-screen border-b border-slate-300 font-geist-sans text-slate-900 md:grid-cols-2">
         <MainContent />
       </main>
+      <footer className="px-6 py-3.5 text-slate-900">
+        <nav>
+          <ul className="flex">
+            <li>
+              <Link className="text-sm hover:underline" href="/resume-builder/privacy">
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link className="ml-3 text-sm hover:underline" href="/resume-builder/terms">
+                Terms
+              </Link>
+            </li>
+            <li className="ml-auto">
+              <Link className="text-sm hover:underline" href="/">
+                Reach out
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </footer>
     </>
   )
 }
