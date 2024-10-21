@@ -80,7 +80,7 @@ export function ExperienceFields() {
                   <Input
                     id={`start-date-${info.id}`}
                     className="block w-full"
-                    type="date"
+                    type="month"
                     value={info.startDate}
                     onChange={(event) => handleChange(info.id, 'startDate', event.target.value)}
                   />
@@ -90,7 +90,7 @@ export function ExperienceFields() {
                   <Input
                     id={`end-date-${info.id}`}
                     className="block w-full"
-                    type="date"
+                    type="month"
                     value={info.endDate}
                     onChange={(event) => handleChange(info.id, 'endDate', event.target.value)}
                   />

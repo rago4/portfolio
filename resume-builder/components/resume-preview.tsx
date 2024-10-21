@@ -10,6 +10,7 @@ import {
 
 import { Heading } from '@/resume-builder/components/ui/heading'
 import { useMainContext } from '@/resume-builder/main-context'
+import { formatDate, str2arr } from '@/resume-builder/utils'
 
 const contactIconMap = {
   dribbble: DribbbleIcon,
@@ -21,18 +22,11 @@ const contactIconMap = {
   twitter: TwitterIcon,
 }
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    month: 'long',
-    year: 'numeric',
-  })
-}
-
 export function ResumePreview() {
   const { fields, contactInfo, experienceInfo, educationInfo } = useMainContext()
-  const skills = fields.skills.length > 0 ? fields.skills.split(';') : []
+  const skills = str2arr(fields.skills)
   return (
-    <div className="space-y-6 rounded-lg bg-white p-6 shadow-lg">
+    <div className="space-y-5 rounded-lg bg-white p-6 shadow-lg">
       <div>
         {fields.name.length > 0 && <p className="text-3xl font-bold">{fields.name}</p>}
         {fields.title.length > 0 && <p className="text-slate-600">{fields.title}</p>}
@@ -81,7 +75,7 @@ export function ResumePreview() {
           <div className="space-y-4">
             {experienceInfo.map((info) => {
               const description = info.description.includes(';')
-                ? info.description.split(';')
+                ? str2arr(info.description)
                 : info.description
               return (
                 <div key={info.id}>
