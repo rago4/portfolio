@@ -24,7 +24,7 @@ const contactIconMap = {
 
 export function ResumePreview() {
   const { fields, contactInfo, experienceInfo, educationInfo } = useMainContext()
-  const skills = str2arr(fields.skills)
+  const skills = str2arr(fields.skills, ',')
   return (
     <div className="space-y-5 rounded-lg bg-white p-6 shadow-lg">
       <div>
@@ -62,9 +62,16 @@ export function ResumePreview() {
       {skills.length > 0 && (
         <div className="space-y-2">
           <Heading>Skills</Heading>
-          <ul className="list-inside list-disc text-slate-600">
+          <ul className="flex flex-wrap gap-2">
             {skills.map((skill, index) => {
-              return <li key={`skill-${index}`}>{skill}</li>
+              return (
+                <li
+                  key={`skill-${index}`}
+                  className="rounded-full bg-slate-100 px-2.5 py-1.5 text-xs font-semibold"
+                >
+                  {skill}
+                </li>
+              )
             })}
           </ul>
         </div>

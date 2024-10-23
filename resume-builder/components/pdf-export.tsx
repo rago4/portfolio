@@ -41,6 +41,7 @@ const pngIconMap = {
 }
 
 const slate = {
+  '100': '#f1f5f9',
   '600': '#475569',
   '900': '#0f172a',
 }
@@ -48,17 +49,17 @@ const slate = {
 const styles: Styles = {
   // shared
   section: {
-    marginBottom: 17.5,
+    marginBottom: 16,
   },
   sectionHeading: {
-    fontSize: 15.75,
+    fontSize: 16,
     fontWeight: 700,
     marginBottom: 7,
   },
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    lineHeight: 1.3125,
+    lineHeight: 1.3,
     color: slate['600'],
   },
   listBull: {
@@ -70,11 +71,11 @@ const styles: Styles = {
   subSectionHeading: {
     fontWeight: 500,
     color: slate['900'],
-    marginBottom: 1.75,
+    marginBottom: 2,
   },
   subSectionText: {
     color: slate['600'],
-    lineHeight: 1.3125,
+    lineHeight: 1.3,
   },
   // components
   mainView: {
@@ -85,7 +86,7 @@ const styles: Styles = {
     padding: 28,
   },
   name: {
-    fontSize: 26.25,
+    fontSize: 26,
     fontWeight: 700,
   },
   title: {
@@ -95,8 +96,8 @@ const styles: Styles = {
     flexDirection: 'row',
     alignItems: 'center',
     color: slate['600'],
-    lineHeight: 1.3125,
-    marginBottom: 3.5,
+    lineHeight: 1.4,
+    marginBottom: 4,
   },
   contactIcon: {
     width: 14,
@@ -104,19 +105,33 @@ const styles: Styles = {
     objectFit: 'contain',
   },
   contactLink: {
-    marginLeft: 5.25,
+    marginLeft: 5,
     color: slate['600'],
   },
   summary: {
     color: slate['600'],
-    lineHeight: 1.3125,
+    lineHeight: 1.4,
+  },
+  skills: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  skill: {
+    fontSize: 10,
+    fontWeight: 600,
+    color: slate['900'],
+    backgroundColor: slate['100'],
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 999,
   },
   experienceDate: {
     color: slate['600'],
-    marginBottom: 3.5,
+    marginBottom: 3,
   },
   consent: {
-    fontSize: 10.5,
+    fontSize: 8,
     color: slate['900'],
   },
 }
@@ -124,7 +139,7 @@ const styles: Styles = {
 export function PdfExport() {
   const { documentStatus, setDocumentStatus, fields, contactInfo, experienceInfo, educationInfo } =
     useMainContext()
-  const skills = str2arr(fields.skills)
+  const skills = str2arr(fields.skills, ',')
   if (documentStatus === 'idle') {
     return (
       <Button variant="primary" onClick={() => setDocumentStatus('ready')}>
@@ -168,13 +183,12 @@ export function PdfExport() {
               {skills.length > 0 && (
                 <View style={styles.section}>
                   <Text style={styles.sectionHeading}>Skills</Text>
-                  <View>
+                  <View style={styles.skills}>
                     {skills.map((skill, index) => {
                       return (
-                        <View key={`skill-${index}`} style={styles.listItem}>
-                          <Text style={styles.listBull}>&bull;</Text>
-                          <Text>{skill}</Text>
-                        </View>
+                        <Text key={`skill-${index}`} style={styles.skill}>
+                          {skill}
+                        </Text>
                       )
                     })}
                   </View>

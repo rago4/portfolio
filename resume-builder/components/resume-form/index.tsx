@@ -59,7 +59,7 @@ export function ResumeForm() {
           value={fields.skills}
           onChange={(event) => onFieldChange('skills', event.target.value)}
           rows={3}
-          placeholder="A list of skills separated by semicolon e.g. React.js, Next.js; JavaScript (ES6+), TypeScript"
+          placeholder="Comma separated list of skills, e.g. React.js, Next.js, JavaScript (ES6+), TypeScript"
         />
       </div>
       <div className="space-y-1">
