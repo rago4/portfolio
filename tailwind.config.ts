@@ -6,6 +6,7 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './resume-builder/**/*.{js,ts,jsx,tsx,mdx}',
+    './dev-analytics/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
