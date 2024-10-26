@@ -1,10 +1,10 @@
-import { TokenForm } from '@/dev-analytics/components/token-form'
+import { LoginForm } from '@/dev-analytics/components/login-form'
 
 export default function DevAnalyticsPage() {
   return (
     <div className="font-geist-sans text-slate-900">
       <header className="flex justify-end border-b border-slate-300 px-4 py-3">
-        <TokenForm />
+        <LoginForm />
       </header>
       <div className="grid h-[calc(100dvh-63px)] grid-cols-12">
         <aside className="col-span-3 overflow-y-auto border-r border-slate-300 p-4">
