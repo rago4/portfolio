@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react'
 
-import { type Article, useArticles } from '@/dev-analytics/services'
+import { type Article } from '@/dev-analytics/services'
 
 type Nullable<T> = T | null
 
@@ -27,8 +27,7 @@ export function useMainContext() {
 }
 
 export function MainContextProvider({ children }: { children: ReactNode }) {
-  const articles = useArticles()
-  const [currentArticle, setCurrentArticle] = useState(articles.data?.data[0] ?? null)
+  const [currentArticle, setCurrentArticle] = useState<Nullable<Article>>(null)
   return (
     <MainContext.Provider value={{ currentArticle, setCurrentArticle }}>
       {children}

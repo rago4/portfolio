@@ -3,6 +3,8 @@ import useSWRImmutable from 'swr/immutable'
 export type Article = {
   id: string
   title: string
+  publishedAt: string
+  url: string
 }
 
 function client<T>(endpoint: string) {

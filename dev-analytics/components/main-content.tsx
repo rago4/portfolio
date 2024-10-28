@@ -1,5 +1,6 @@
 'use client'
 
+import { ArticleHeader } from '@/dev-analytics/components/article-header'
 import { ArticlesMenu } from '@/dev-analytics/components/articles-menu'
 import { MainContextProvider } from '@/dev-analytics/main-context'
 
@@ -11,7 +12,9 @@ export function MainContent() {
           <h2 className="text-lg font-bold">Recent Posts</h2>
           <ArticlesMenu />
         </aside>
-        <main className="col-span-9 overflow-y-auto p-4"></main>
+        <main className="col-span-9 overflow-y-auto bg-slate-50 p-8">
+          <ArticleHeader />
+        </main>
       </div>
     </MainContextProvider>
   )
