@@ -1,5 +1,5 @@
-import { ArticlesMenu } from '@/dev-analytics/components/articles-menu'
 import { LoginForm } from '@/dev-analytics/components/login-form'
+import { MainContent } from '@/dev-analytics/components/main-content'
 
 export default function DevAnalyticsPage() {
   return (
@@ -7,13 +7,7 @@ export default function DevAnalyticsPage() {
       <header className="flex justify-end border-b border-slate-300 px-4 py-3">
         <LoginForm />
       </header>
-      <div className="grid h-[calc(100dvh-63px)] grid-cols-12">
-        <aside className="col-span-3 space-y-4 overflow-y-auto border-r border-slate-300 p-4">
-          <h2 className="text-lg font-bold">Recent Posts</h2>
-          <ArticlesMenu />
-        </aside>
-        <main className="col-span-9 overflow-y-auto p-4"></main>
-      </div>
+      <MainContent />
     </div>
   )
 }

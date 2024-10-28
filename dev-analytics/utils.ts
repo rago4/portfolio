@@ -1,5 +1,6 @@
-export function client<T>(endpoint: string) {
-  return fetch(`/dev-analytics/${endpoint}`).then((res) => {
-    return res.json() as Promise<{ data: T; error?: string }>
-  })
+import clsx from 'clsx'
+import { type ClassNameValue, twMerge } from 'tailwind-merge'
+
+export function cn(...classes: ClassNameValue[]) {
+  return clsx(twMerge(classes))
 }

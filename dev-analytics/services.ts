@@ -1,4 +1,9 @@
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
+
+export type Article = {
+  id: string
+  title: string
+}
 
 function client<T>(endpoint: string) {
   return fetch(`/dev-analytics/${endpoint}`).then((res) => {
@@ -7,5 +12,7 @@ function client<T>(endpoint: string) {
 }
 
 export function useArticles() {
-  return useSWR('articles', () => client<{ id: string; title: string }[]>('articles'))
+  return useSWRImmutable('articles', () => {
+    return client<Article[]>('articles')
+  })
 }
