@@ -4,6 +4,7 @@ import {
   LinkedinIcon,
   LinkIcon,
   MailIcon,
+  TextSelectIcon,
   TwitterIcon,
 } from 'lucide-react'
 import Link from 'next/link'
@@ -13,6 +14,7 @@ const iconMap = {
   linkedin: LinkedinIcon,
   mail: MailIcon,
   other: LinkIcon,
+  proofreader: TextSelectIcon,
   resume: FileUserIcon,
   twitter: TwitterIcon,
 }
@@ -81,6 +83,7 @@ export default function Home() {
         <p className="my-6 text-sm text-neutral-100">Or check out my recent projects</p>
         <section className={sectionStyles}>
           <LinkButton variant="resume" href="/resume-builder" label="Resume Builder" />
+          <LinkButton variant="proofreader" href="/proofreader" label="Proofreader" />
         </section>
       </div>
     </main>
